@@ -47,7 +47,7 @@ class JsonMigrationTests extends  FlatSpec with JsValueWrapperImplicits with Mat
   private val migrator3 = new JsonMigrator {
     def migrate(input: JsValueWrapper): Unit =
       PathResolver.migrate(input, List(RecurFieldCond(HasField("sField")))) { w =>
-        w.map.update("sField", JsStringWrapper("hahaha"))
+        w.map.update("sField", "hahaha")
       }
   }
 
