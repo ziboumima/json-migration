@@ -23,7 +23,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 
 If you've found it useful, please let me know
 
-#How to use
+# How to use
 
 Suppose we want have a json value:
 
