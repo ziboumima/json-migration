@@ -146,3 +146,8 @@ allMigrator.migrate(x) // then mutate it by applying the global migration
 JsValueWrapper.toJson(x) shouldBe jsonResult // the result must be identical to the desired result
 ```
 
+## Go further
+
+This code is extracted in a real world project
+
+
