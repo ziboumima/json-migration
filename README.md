@@ -1,5 +1,16 @@
 # json-migration
-This project tries to help building a migration framework in the same way of a database migration tool.
+This project tries to help building a json migration framework in the same way of a database migration tool.
+
+The `json` libary used in this example is `play-json`
+
+The aim of this project is to make the migration script easy to write by people who does not have much experience in
+functional programming. Even experienced programmers can stuck with the `Coast to coast design` 
+[Coast to coast design  ](https://www.playframework.com/documentation/2.6.x/ScalaJsonTransformers)
+
+This comes with a cost because it's not type safe: if the user wants to update a field which is a string but it's an object
+in realty, then an `Exception` is throw. Remember, exception can be throwed anywhere inside the migration script.
+
+In a real world project, the users should backup their databases before applying any migrations
 
 For the moment, I did not make it available to import from `sbt`. If you want to integrate into your project, just copy 
 the files and add the dependencies.
@@ -12,7 +23,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % "test"
 
 If you've found it useful, please let me know
 
-# How to use
+#How to use
 
 Suppose we want have a json value:
 
