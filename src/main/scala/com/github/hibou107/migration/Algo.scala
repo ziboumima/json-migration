@@ -56,7 +56,7 @@ object JsValueWrapper {
     }.toMap
   }
 
-  def create(input: JsValue): JsValueWrapper =
+  implicit def create(input: JsValue): JsValueWrapper =
     input match {
       case x: JsObject    => JsObjectWrapper(collection.mutable.Map(x.value.mapValues(create).toSeq: _*))
       case x: JsArray     => JsArrayWrapper(ArrayBuffer(x.value: _*).map(create))
@@ -66,7 +66,7 @@ object JsValueWrapper {
       case JsNull         => JsNUllWrapper
     }
 
-  def toJson(input: JsValueWrapper): JsValue = {
+  implicit def toJson(input: JsValueWrapper): JsValue = {
     input match {
       case x: JsObjectWrapper    => JsObject(x.value.map { case (name, value) => (name, toJson(value)) }.toSeq)
       case x: JsArrayWrapper     => JsArray(x.value.map(toJson))

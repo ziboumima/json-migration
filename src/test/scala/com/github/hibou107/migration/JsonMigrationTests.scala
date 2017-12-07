@@ -6,7 +6,7 @@ import scalaz.syntax.foldable._
 import scalaz.std.list._
 
 
-class JsonMigrationTests extends FlatSpec with Matchers {
+class JsonMigrationTests extends  FlatSpec with JsValueWrapperImplicits with Matchers {
   private val json = Json.parse(
     """
       |{
@@ -40,7 +40,7 @@ class JsonMigrationTests extends FlatSpec with Matchers {
   // add new field field1/field12
   private val migrator2 = new JsonMigrator {
     def migrate(input: JsValueWrapper): Unit =
-      input("field1").map.update("field12", JsStringWrapper("myNewField"))
+      input("field1").map.update("field12", "myNewField")
   }
 
   //  Change all sFields to "hahaha"
@@ -50,8 +50,6 @@ class JsonMigrationTests extends FlatSpec with Matchers {
         w.map.update("sField", JsStringWrapper("hahaha"))
       }
   }
-
-  List(migrator1, migrator2, migrator3).suml
 
   // add field "field"
 
